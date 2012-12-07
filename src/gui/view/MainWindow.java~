@@ -1,0 +1,11 @@
+/*
+  The main window of the monitor program
+ */
+
+public class MainWindow {
+    
+    public MainWindow()
+    {
+	
+    }
+}

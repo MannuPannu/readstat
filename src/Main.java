@@ -1,8 +1,8 @@
-package src;
 
-import src.statistics.Array;
-import src.statistics.Statistics;
-import src.statistics.ReadStat;
+import statistics.Array;
+import statistics.Statistics;
+import statistics.ReadStat;
+import gui.*;
 
 class Main 
 {
@@ -10,11 +10,13 @@ class Main
   {
     ReadStat read = new ReadStat();
     Array statArray = read.getStatistics();
+    GuiControl guiControl = new GuiControl(statArray);
 
-    int arraySize = statArray.size;
+    //    int arraySize = statArray.size;
 
-    Statistics [] s = statArray.statObjArray;
+    //    Statistics [] s = statArray.statObjArray;
 
+    /*
     for(int i = 0; i < arraySize; i++)
 	{
 	    String fileName = s[i].fileName;
@@ -42,6 +44,6 @@ class Main
 		{
 		    System.out.println(psTimers[j]);
 		}
-	}
+		} */
   }
 }

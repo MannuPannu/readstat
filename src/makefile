@@ -3,7 +3,7 @@ JFLAGS = -g -d ../bin/
 
 CFILEPATH = c-code/
 CLIBPATH = ../lib/
-SRC = src/
+SRC = 
 
 GCC = g++
 CFLAGS = -shared -fpic -o $(CLIBPATH)libReadStat.so -I/usr/java/include -I/usr/java/include/linux $(CFILEPATH)ReadStat.cpp 
