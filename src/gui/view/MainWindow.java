@@ -1,6 +1,6 @@
-package gui.view;
+package src.gui.view;
 
-import gui.GuiControl;
+import src.gui.GuiControl;
 
 import javax.swing.*;
 import java.awt.*;

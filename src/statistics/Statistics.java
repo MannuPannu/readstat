@@ -1,4 +1,4 @@
-package statistics;
+package src.statistics;
 
 public class Statistics {
     

@@ -1,4 +1,1 @@
-
-#DBS=$(locate libReadStat.so)
-#echo $DBS
-java -classpath bin -Djava.library.path=".:/home/magnus/Skolan/Thesis/program/examples/readstat/lib" Main
+java -Djava.library.path=".:/home/magnus/Skolan/Thesis/program/examples/readstat/lib" src/Main
