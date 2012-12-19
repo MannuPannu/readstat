@@ -1,0 +1,16 @@
+package src.control;
+
+/* Class that contains all the actions in the program */
+
+public class ActionContainer {
+    
+    public ActionContainer()
+    {
+	
+    }
+
+    private selectProcessAction extends Action ()
+    {
+	
+    }
+}

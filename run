@@ -1,1 +1,1 @@
-java -Djava.library.path=".:/home/magnus/Skolan/Thesis/program/examples/readstat/lib" src/Main
+java -classpath bin -Djava.library.path=".:/home/magnus/Skolan/Thesis/program/readstat/lib" com.Main
