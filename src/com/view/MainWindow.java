@@ -105,8 +105,6 @@ public class MainWindow extends JPanel {
     {
 	this.listModel = new DefaultListModel<String>();
 
-
-
 	if(this.statisticsContainer != null)
 	    {
 		Statistics stat = this.statisticsContainer.getStatistics();
@@ -135,7 +133,7 @@ public class MainWindow extends JPanel {
 
 	this.list = new JList<String>(this.listModel);
 	this.listSelectionModel =  this.list.getSelectionModel();
-	this.listSelectionModel.addListSelectionListener(new SharedListSelectionHandler());
+	this.listSelectionModel.addListSelectionListener(new SharedListSelectionHandler(this.listModel));
 	
 	this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	this.list.setSelectedIndex(0);
@@ -177,6 +175,14 @@ public class MainWindow extends JPanel {
 
     //Class for detecting list events
     class SharedListSelectionHandler implements ListSelectionListener {
+
+	private DefaultListModel listModel;
+
+	public SharedListSelectionHandler(DefaultListModel df)
+	{
+	    this.listModel = df;
+	}
+
         public void valueChanged(ListSelectionEvent e) { 
             ListSelectionModel lsm = (ListSelectionModel)e.getSource();
 
@@ -196,7 +202,9 @@ public class MainWindow extends JPanel {
                 int maxIndex = lsm.getMaxSelectionIndex();
                 for (int i = minIndex; i <= maxIndex; i++) {
                     if (lsm.isSelectedIndex(i)) {
-                        System.out.println(" " + i);
+
+			String processName = (String)this.listModel.get(i);
+                        System.out.println(processName + " at index " + i);
                     }
                 }
             }
