@@ -4,7 +4,7 @@ JCH = javah
 CLASSDIR = bin
 SOURCEPATH = src
 
-JFLAGS = -g
+JFLAGS = -g -Xlint:unchecked
 JHFLAGS = -jni
 
 CFILEPATH = src/c-code/

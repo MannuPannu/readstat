@@ -39,12 +39,10 @@ public class MainControl {
     {
 	//Creates the a container for storing statistics data
 	this.statisticsContainer = new StatisticsContainer();
-	this.mainWindow = new MainWindow(this.statisticsContainer);
-
-	ReadStat read = new ReadStat();
-	System.out.println("Write data to file");
 
 	// Native C++ code that gets and writes statistics data to file
+
+	ReadStat read = new ReadStat();
 	read.writedatatofile(); 
 
 	//Read that file
@@ -52,6 +50,9 @@ public class MainControl {
 
 	//Update model with new statistics data
 	this.statisticsContainer.updateStatistics(statData);
+	
+	//Create view and load it with model
+	this.mainWindow = new MainWindow(this.statisticsContainer);
 
 	//Repaint view
 	this.mainWindow.repaint();
