@@ -25,4 +25,20 @@ public class ProcessStat {
 	this.psSizes = psSizes;
 	this.psTimers = psTimers;
     }
+
+    public String getFileName() {
+	return fileName;
+    }
+
+    public List<Long> getPsCounters() {
+	return psCounters;
+    }
+
+    public List<Integer> getPsSizes() {
+	return psSizes;
+    }
+
+    public List<Integer> getPsTimers() {
+	return psTimers;
+    }
 }

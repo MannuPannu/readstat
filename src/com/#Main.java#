@@ -2,15 +2,10 @@ package com;
 
 import com.control.MainControl;
 
-/**
- * The Main class
- * Starts the application
- *
- * @author Magnus Stenqvist
- */
-
 class Main 
 {
+
+    private Foo bar;
 
     public static void main(String[] args) 
     {

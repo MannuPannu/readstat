@@ -1,0 +1,9 @@
+package com.view;
+
+public class ProcessInfo {
+    
+    public ProcessInfo()
+    {
+	
+    }
+}

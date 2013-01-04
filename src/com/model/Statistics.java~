@@ -1,0 +1,18 @@
+package com.model;
+
+public class Statistics {
+    
+    public ProcessStat[] procObjArray;
+
+    public int size;
+
+    public Statistics (ProcessStat[] procObjArray, int size) {
+
+	this.size = size;
+
+	this.procObjArray = new ProcessStat[size];
+
+	System.arraycopy(procObjArray, 0, this.procObjArray, 0, size);
+    }
+}
+

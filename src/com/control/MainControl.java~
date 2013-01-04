@@ -18,6 +18,7 @@ import java.io.DataInputStream;
 
 import java.io.FileInputStream;
 
+import com.model.StatisticsContainer;
 import com.model.Statistics;
 import com.model.ProcessStat;
 
@@ -25,41 +26,35 @@ import com.view.MainWindow;
 
 /*
   Responsible for creating the model and the view and update both with data
-
-  It uses ReadStat to execute native code to store statistics data on disc, which
-  it then reads and supplies to the model and view.
  */
 public class MainControl {
     
-    private ActionContainer actionContainer;
-
-    private MainWindow mainWindow; //View
-    private Statistics statistics; //Model
+    private MainWindow mainWindow;
+    private StatisticsContainer statisticsContainer;
 
     public MainControl ()
     {
-	// Native C++ code that gets and writes statistics data to file
+	//Creates the a container for storing statistics data
+	this.statisticsContainer = new StatisticsContainer();
+	this.mainWindow = new MainWindow(this.statisticsContainer);
 
 	ReadStat read = new ReadStat();
-	read.writedatatofile(); 
+	System.out.println("Write data to file");
+	read.writedatatofile(); //C++ code that gets and writes statistics data to file
 
-	//Read that file
-	this.statistics = readStatFromFile();
-
-	this.actionContainer = new ActionContainer();
-
-	//Create view and load it with model
-	this.mainWindow = new MainWindow(this.statistics, this);
-
-	//Repaint view
-	this.mainWindow.repaint();
+	readStatFromFile();
+	
     }
 
-    private Statistics readStatFromFile()
+    private void readStatFromFile()
     {
+
 	String fileName = new String();;
 
 	List<ProcessStat> procStatList = new ArrayList<ProcessStat>();
+	List<Long> psCounters = new ArrayList<Long>();
+	List<Integer> psSizes = new ArrayList<Integer>();
+	List<Integer> psTimers = new ArrayList<Integer>();
 	
 	try{
 	    // Open the file that is the first 
@@ -73,9 +68,6 @@ public class MainControl {
 	    while((c = (char)br.read()) == 'p')
 		{
 		    fileName = c + br.readLine(); //Get filename
-		    List<Long> psCounters = new ArrayList<Long>();
-		    List<Integer> psSizes = new ArrayList<Integer>();
-		    List<Integer> psTimers = new ArrayList<Integer>();
 		    
 		    for(int i = 0; i < 8; i++)
 			{
@@ -84,15 +76,16 @@ public class MainControl {
 
 		    for(int i = 0; i < 5; i++)
 			{
-			    psSizes.add(Integer.parseInt(br.readLine()));
+			    psSizes.add(Integer.getInteger(br.readLine()));
 			}
 
 		    for(int i = 0; i < 4; i++)
 			{
-			    psTimers.add(Integer.parseInt(br.readLine()));
+			    psTimers.add(Integer.getInteger(br.readLine()));
 			}
 
 		    ProcessStat procData = new ProcessStat(fileName, psCounters, psSizes, psTimers);
+		    System.out.println("Put in the list!");
 		    procStatList.add(procData);
 		}
 
@@ -102,16 +95,10 @@ public class MainControl {
 	    System.err.println("Error: " + e.getMessage());
 	}
 
+
 	Statistics statData = new Statistics(procStatList);
 
-	return statData;
-    }
-
-    public ActionContainer getActionContainer() {
-	return actionContainer;
-    }
-
-    public void setActionContainer(ActionContainer actionContainer) {
-	this.actionContainer = actionContainer;
+	this.statisticsContainer.updateStatistics(statData);
+	this.mainWindow.repaint();
     }
 }

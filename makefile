@@ -24,6 +24,7 @@ javaclasses:
 
 javah:	
 	$(JCH) $(JHFLAGS) -d src/c-code/ -classpath $(CLASSDIR) com.control.ReadStat
+
 .PHONY : lib
 
 #Compiles the c++ shared library

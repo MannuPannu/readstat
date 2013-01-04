@@ -1,0 +1,11 @@
+/*
+  
+ */
+
+public class ProcessStat {
+    
+    public ProcessStat()
+    {
+	
+    }
+}
